@@ -1,12 +1,19 @@
 package ru.appngo.omisetest.charities
 
-class CharitiesPresenter : CharitiesContract.Presenter {
+import ru.appngo.omisetest.network.OmiseService
 
-    override fun onStart() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class CharitiesPresenter(
+    private val omiseService: OmiseService
+) : CharitiesContract.Presenter {
+
+    lateinit var view: CharitiesContract.View
+
+    override suspend fun onStart(view: CharitiesContract.View) {
+        this.view = view
+        view.showCharitiesList(omiseService.getCharities().data)
     }
 
     override fun onCharityClick(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 }

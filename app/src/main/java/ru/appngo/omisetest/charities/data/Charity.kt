@@ -4,16 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class CharityResponse(
     @SerializedName("total")
-    private val total: Int,
+    val total: Int,
     @SerializedName("data")
-    private val data: List<Charity>
+    val data: List<Charity>
 )
 
 data class Charity(
     @SerializedName("id")
-    private val id: Int,
+    val id: Int,
     @SerializedName("name")
-    private val name: String,
+    val name: String,
     @SerializedName("logo_url")
-    private val logoUrl: String
+    val logoUrl: String
 )

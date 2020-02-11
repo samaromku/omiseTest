@@ -10,7 +10,7 @@ interface CharitiesContract {
     }
 
     interface Presenter {
-        fun onStart()
+        suspend fun onStart(view: View)
         fun onCharityClick(position: Int)
     }
 }

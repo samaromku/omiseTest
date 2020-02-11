@@ -13,10 +13,10 @@ class CharitiesActivity : AppCompatActivity(), CharitiesContract.View {
     }
 
     override fun showCharitiesList(charities: List<Charity>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun navigateToDonations(charity: Charity) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 }
