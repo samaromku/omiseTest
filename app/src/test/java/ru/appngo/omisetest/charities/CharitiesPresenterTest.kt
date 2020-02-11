@@ -25,13 +25,15 @@ class CharitiesPresenterTest {
 
         presenter.onStart(view)
 
+        verify(view).showProgress()
         verify(view).showCharitiesList(list)
+        verify(view).dismissProgress()
     }
 }
 
 val testCharityList = listOf(Charity(1, "testName", "testLogo"))
 
-class DummyService() : OmiseService {
+class DummyService : OmiseService {
     override suspend fun getCharities(): CharityResponse {
         return CharityResponse(testCharityList.size, testCharityList)
     }

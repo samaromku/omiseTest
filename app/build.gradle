@@ -36,15 +36,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation("com.google.code.gson:gson:2.8.5")
-    implementation("com.squareup.retrofit2:retrofit:2.3.0")
+    implementation("com.squareup.retrofit2:retrofit:2.6.0")
     implementation("com.squareup.okhttp3:logging-interceptor:3.8.1")
     implementation("com.squareup.retrofit2:converter-gson:2.3.0")
-    implementation("com.squareup.retrofit2:adapter-rxjava2:2.2.0")
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines"
 
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
 }

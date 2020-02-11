@@ -10,7 +10,14 @@ class CharitiesPresenter(
 
     override suspend fun onStart(view: CharitiesContract.View) {
         this.view = view
-        view.showCharitiesList(omiseService.getCharities().data)
+        view.showProgress()
+        try {
+            val data = omiseService.getCharities().data
+            view.showCharitiesList(data)
+        } catch (exc: Exception) {
+            view.showError(exc.message.toString())
+        }
+        view.dismissProgress()
     }
 
     override fun onCharityClick(position: Int) {

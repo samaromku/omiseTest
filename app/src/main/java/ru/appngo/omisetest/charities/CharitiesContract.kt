@@ -5,7 +5,10 @@ import ru.appngo.omisetest.charities.data.Charity
 interface CharitiesContract {
 
     interface View {
-        fun showCharitiesList(charities: List<Charity>)
+        suspend fun showProgress()
+        suspend fun dismissProgress()
+        suspend fun showCharitiesList(charities: List<Charity>)
+        suspend fun showError(error: String)
         fun navigateToDonations(charity: Charity)
     }
 
