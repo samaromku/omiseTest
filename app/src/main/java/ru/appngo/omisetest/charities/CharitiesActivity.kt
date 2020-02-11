@@ -1,9 +1,10 @@
 package ru.appngo.omisetest.charities
 
-import android.app.ProgressDialog
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_charities.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
@@ -16,9 +17,6 @@ import ru.appngo.omisetest.network.Services
 class CharitiesActivity : AppCompatActivity(), CharitiesContract.View {
 
     private val presenter: CharitiesPresenter = CharitiesPresenter(Services.getOmiseService())
-    private val dialog: ProgressDialog by lazy {
-        ProgressDialog(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +35,11 @@ class CharitiesActivity : AppCompatActivity(), CharitiesContract.View {
     }
 
     override suspend fun showProgress() = withContext(Main) {
-        dialog.show()
+        progress_bar.visibility = View.VISIBLE
     }
 
     override suspend fun dismissProgress() = withContext(Main) {
-        dialog.dismiss()
+        progress_bar.visibility = View.GONE
     }
 
     override suspend fun showError(error: String) = withContext(Main) {
