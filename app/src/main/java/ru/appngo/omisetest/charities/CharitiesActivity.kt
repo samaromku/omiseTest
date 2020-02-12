@@ -14,6 +14,10 @@ import ru.appngo.omisetest.R
 import ru.appngo.omisetest.charities.data.Charity
 import ru.appngo.omisetest.network.Services
 
+/**
+ * Represents charities.
+ * Decides on which thread the code will be executed.
+ */
 class CharitiesActivity : AppCompatActivity(), CharitiesContract.View {
 
     private val presenter: CharitiesPresenter = CharitiesPresenter(Services.getOmiseService())
@@ -27,7 +31,7 @@ class CharitiesActivity : AppCompatActivity(), CharitiesContract.View {
     }
 
     override suspend fun showCharitiesList(charities: List<Charity>) = withContext(Main) {
-
+        charity_list.adapter = CharitiesAdapter(charities)
     }
 
     override fun navigateToDonations(charity: Charity) {
