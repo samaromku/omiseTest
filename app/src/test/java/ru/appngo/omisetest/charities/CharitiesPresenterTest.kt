@@ -21,13 +21,20 @@ class CharitiesPresenterTest {
 
     @Test
     fun `confirm view shows list of charities on success request`() = runBlocking {
-        val list = testCharityList
-
         presenter.onStart(view)
 
         verify(view).showProgress()
-        verify(view).showCharitiesList(list)
+        verify(view).showCharitiesList(testCharityList)
         verify(view).dismissProgress()
+    }
+
+    @Test
+    fun `on charity click navigate to donations`() = runBlocking {
+        val position = 0
+        presenter.onStart(view)
+        presenter.onCharityClick(position)
+
+        verify(view).navigateToDonations(testCharityList[position])
     }
 }
 

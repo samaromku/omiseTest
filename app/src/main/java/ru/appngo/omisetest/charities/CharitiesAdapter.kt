@@ -11,7 +11,8 @@ import ru.appngo.omisetest.R
 import ru.appngo.omisetest.charities.data.Charity
 
 class CharitiesAdapter(
-    private val list: List<Charity>
+    private val list: List<Charity>,
+    private val clickListener: (position: Int) -> Unit
 ) : RecyclerView.Adapter<CharitiesAdapter.CharityViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharityViewHolder {
@@ -27,13 +28,21 @@ class CharitiesAdapter(
         holder.bind(list[position])
     }
 
-    class CharityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CharityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        init {
+            itemView.setOnClickListener(this)
+        }
 
         fun bind(charity: Charity) {
             itemView.findViewById<TextView>(R.id.charity_name).text = charity.name
             Picasso.get()
                     .load(charity.logoUrl)
                     .into(itemView.findViewById<ImageView>(R.id.charity_logo))
+        }
+
+        override fun onClick(v: View?) {
+            clickListener(adapterPosition)
         }
     }
 }

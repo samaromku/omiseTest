@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.appngo.omisetest.R
 import ru.appngo.omisetest.charities.data.Charity
+import ru.appngo.omisetest.donations.DonationsActivity
 import ru.appngo.omisetest.network.Services
 
 /**
@@ -31,11 +32,13 @@ class CharitiesActivity : AppCompatActivity(), CharitiesContract.View {
     }
 
     override suspend fun showCharitiesList(charities: List<Charity>) = withContext(Main) {
-        charity_list.adapter = CharitiesAdapter(charities)
+        charity_list.adapter = CharitiesAdapter(charities) {
+            presenter.onCharityClick(it)
+        }
     }
 
     override fun navigateToDonations(charity: Charity) {
-
+        startActivity(DonationsActivity.createIntent(this, charity))
     }
 
     override suspend fun showProgress() = withContext(Main) {
