@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_donations.*
 import ru.appngo.omisetest.R
 import ru.appngo.omisetest.charities.data.Charity
 
@@ -22,7 +23,7 @@ class DonationsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_donations)
-        val name = getDonationName()
+        donation_name.text = getDonationName()
     }
 
     private fun getDonationName() = intent.getStringExtra(DONATION_NAME_EXTRA)
