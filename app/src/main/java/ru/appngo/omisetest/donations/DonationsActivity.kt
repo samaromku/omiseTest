@@ -10,7 +10,7 @@ import ru.appngo.omisetest.charities.data.Charity
 
 private const val DONATION_NAME_EXTRA = "charity"
 
-class DonationsActivity : AppCompatActivity() {
+class DonationsActivity : AppCompatActivity(), DonationsContract.View {
 
     companion object {
 
@@ -27,4 +27,20 @@ class DonationsActivity : AppCompatActivity() {
     }
 
     private fun getDonationName() = intent.getStringExtra(DONATION_NAME_EXTRA)
+
+    override suspend fun showProgressIndicator() {
+
+    }
+
+    override suspend fun hideProgressIndicator() {
+
+    }
+
+    override suspend fun navigateToSuccess() {
+
+    }
+
+    override suspend fun showError(error: String) {
+
+    }
 }

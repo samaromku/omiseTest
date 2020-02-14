@@ -5,9 +5,8 @@ import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import ru.appngo.omisetest.charities.data.Charity
-import ru.appngo.omisetest.charities.data.CharityResponse
-import ru.appngo.omisetest.network.OmiseService
+import ru.appngo.omisetest.DummyService
+import ru.appngo.omisetest.testCharityList
 
 class CharitiesPresenterTest {
 
@@ -38,10 +37,3 @@ class CharitiesPresenterTest {
     }
 }
 
-val testCharityList = listOf(Charity(1, "testName", "testLogo"))
-
-class DummyService : OmiseService {
-    override suspend fun getCharities(): CharityResponse {
-        return CharityResponse(testCharityList.size, testCharityList)
-    }
-}
