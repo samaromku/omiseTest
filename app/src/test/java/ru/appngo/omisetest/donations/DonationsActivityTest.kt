@@ -1,5 +1,6 @@
 package ru.appngo.omisetest.donations
 
+import android.os.Build
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -10,22 +11,25 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 import ru.appngo.omisetest.charities.data.Charity
 
 private val testCharity = Charity(1, "testCharityName", "testLogo")
 
 @RunWith(AndroidJUnit4::class)
+//Execution on build version higher throws an error:
+//Failed to create a Robolectric sandbox: Android SDK 29 requires Java 9
+@Config(sdk = [Build.VERSION_CODES.P])
 class DonationsActivityTest {
 
     @get:Rule
     var rule: ActivityTestRule<DonationsActivity> = ActivityTestRule(DonationsActivity::class.java)
 
-    private lateinit var donationsPage: DonationsPage
+    private val donationsPage = DonationsPage()
 
     @Before
     fun setup() {
         rule.launchActivity(DonationsActivity.createIntent(rule.activity, testCharity))
-        donationsPage = DonationsPage()
     }
 
     @Test
