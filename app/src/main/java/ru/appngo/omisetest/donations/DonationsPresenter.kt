@@ -1,10 +1,10 @@
 package ru.appngo.omisetest.donations
 
 import ru.appngo.omisetest.donations.data.Donation
-import ru.appngo.omisetest.network.OmiseService
+import ru.appngo.omisetest.network.NetworkDataSource
 
 class DonationsPresenter(
-    private val service: OmiseService
+    private val networkDataSource: NetworkDataSource
 ) : DonationsContract.Presenter {
 
     private lateinit var view: DonationsContract.View
@@ -16,7 +16,7 @@ class DonationsPresenter(
     override suspend fun onSendButtonClick(donation: Donation) {
         view.showProgressIndicator()
         try {
-            val data = service.sendDonation(donation)
+            val data = networkDataSource.sendDonation(donation)
             if (data.success) {
                 if (data.errorMessage.isBlank()) {
                     view.navigateToSuccess()

@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 import ru.appngo.omisetest.R
 import ru.appngo.omisetest.charities.data.Charity
 import ru.appngo.omisetest.donations.DonationsActivity
-import ru.appngo.omisetest.network.Services
+import ru.appngo.omisetest.network.NetworkDataSourceFactory.createDataSource
 
 /**
  * Represents charities.
@@ -21,7 +21,7 @@ import ru.appngo.omisetest.network.Services
  */
 class CharitiesActivity : AppCompatActivity(), CharitiesContract.View {
 
-    private val presenter: CharitiesPresenter = CharitiesPresenter(Services.getOmiseService())
+    private val presenter: CharitiesPresenter = CharitiesPresenter(createDataSource(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

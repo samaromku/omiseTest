@@ -1,10 +1,10 @@
 package ru.appngo.omisetest.charities
 
 import ru.appngo.omisetest.charities.data.Charity
-import ru.appngo.omisetest.network.OmiseService
+import ru.appngo.omisetest.network.NetworkDataSource
 
 class CharitiesPresenter(
-    private val omiseService: OmiseService
+    private val networkDataSource: NetworkDataSource
 ) : CharitiesContract.Presenter {
 
     lateinit var view: CharitiesContract.View
@@ -14,7 +14,7 @@ class CharitiesPresenter(
         this.view = view
         view.showProgress()
         try {
-            charities = omiseService.getCharities().data
+            charities = networkDataSource.getCharities().data
             view.showCharitiesList(charities)
         } catch (exc: Exception) {
             view.showError(exc.message.toString())

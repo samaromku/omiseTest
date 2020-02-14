@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import ru.appngo.omisetest.donations.data.SendDonationResponse
-import ru.appngo.omisetest.network.OmiseService
+import ru.appngo.omisetest.network.NetworkDataSource
 import ru.appngo.omisetest.testDonation
 
 private val successResponse = SendDonationResponse(true, "", "")
@@ -18,17 +18,17 @@ class DonationsPresenterTest {
 
     private lateinit var presenter: DonationsPresenter
     private val view: DonationsContract.View = mock()
-    private val service: OmiseService = mock()
+    private val dataSource: NetworkDataSource = mock()
 
     @Before
     fun setUp() {
-        presenter = DonationsPresenter(service)
+        presenter = DonationsPresenter(dataSource)
         presenter.onStart(view)
     }
 
     @Test
     fun `on success response view navigates to next screen`() = runBlocking {
-        whenever(service.sendDonation(any())).thenReturn(successResponse)
+        whenever(dataSource.sendDonation(any())).thenReturn(successResponse)
 
         presenter.onSendButtonClick(testDonation)
 
@@ -39,7 +39,7 @@ class DonationsPresenterTest {
 
     @Test
     fun `on error response view shows error`() = runBlocking {
-        whenever(service.sendDonation(any())).thenReturn(failureResponse)
+        whenever(dataSource.sendDonation(any())).thenReturn(failureResponse)
 
         presenter.onSendButtonClick(testDonation)
 

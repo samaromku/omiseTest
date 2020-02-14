@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 import ru.appngo.omisetest.R
 import ru.appngo.omisetest.charities.data.Charity
 import ru.appngo.omisetest.donations.data.Donation
-import ru.appngo.omisetest.network.Services
+import ru.appngo.omisetest.network.NetworkDataSourceFactory.createDataSource
 
 private const val DONATION_NAME_EXTRA = "charity"
 
@@ -29,7 +29,7 @@ class DonationsActivity : AppCompatActivity(), DonationsContract.View {
                 }
     }
 
-    private val presenter: DonationsContract.Presenter = DonationsPresenter(Services.getOmiseService())
+    private val presenter: DonationsContract.Presenter = DonationsPresenter(createDataSource(this))
     private val progressDialog: ProgressDialog by lazy {
         ProgressDialog(this)
     }
